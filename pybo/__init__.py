@@ -17,7 +17,7 @@ migrate = Migrate()
 
 def create_app(): #애플리케이션 팩토리(application factory)
     app = Flask(__name__) #app 객체 생성 및 반환
-    app.config.from_object(config)
+    app.config.from_envvar('APP_CONFIG_FILE')
 
     #ORM
     db.init_app(app)
