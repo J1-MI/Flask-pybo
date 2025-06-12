@@ -34,11 +34,12 @@ def create_app(): #애플리케이션 팩토리(application factory)
     from . import models
 
     #Blueprint
-    from .views import main_views, question_views, answer_views, auth_views
+    from .views import main_views, question_views, answer_views, auth_views, cbt_views
     app.register_blueprint(main_views.bp)
     app.register_blueprint(question_views.bp)
     app.register_blueprint(answer_views.bp)
     app.register_blueprint(auth_views.bp)
+    app.register_blueprint(cbt_views.bp)
 
     #Filter
     from .filter import format_datetime
@@ -50,5 +51,9 @@ def create_app(): #애플리케이션 팩토리(application factory)
     @app.template_filter('markdown')
     def markdown_filter(content):
         return markdown(content, extensions=['nl2br', 'fenced_code'])
+
+    #hello, world!
+    from .views import hello_world
+    app.register_blueprint(hello_world.bp)
 
     return app
